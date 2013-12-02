@@ -37,6 +37,7 @@ gem 'debugger', group: [:development, :test]
 
 # Use Mongoid as the ORM library.
 gem 'mongoid'
+gem 'bson_ext'
 
 # Heroku
 gem 'rails_12factor', group: :production
