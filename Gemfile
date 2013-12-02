@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
@@ -35,4 +37,7 @@ gem 'debugger', group: [:development, :test]
 
 # Use Mongoid as the ORM library.
 gem 'mongoid'
+
+# Heroku
+gem 'rails_12factor', group: :production
 
