@@ -42,3 +42,6 @@ gem 'bson_ext'
 # Heroku
 gem 'rails_12factor', group: :production
 
+# Thin server
+gem 'thin'
+
