@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require backbone
+//= require backbone.marionette
 //= require_tree .
+
+var App = new Marionette.Application();
+
+// Use mustache style templates to avoid conflicting with ERB templates.
+_.templateSettings = {
+  interpolate: /\{\{(.+?)\}\}/g
+};
+
