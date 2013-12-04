@@ -45,3 +45,6 @@ gem 'rails_12factor', group: :production
 # Thin server
 gem 'thin'
 
+# Twitter Streaming API client.
+gem 'tweetstream'
+
