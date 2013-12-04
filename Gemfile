@@ -37,6 +37,7 @@ gem 'debugger', group: [:development, :test]
 
 # Use Mongoid as the ORM library.
 gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid_search', github: 'mauriciozaffari/mongoid_search'
 gem 'bson_ext'
 
 # Heroku

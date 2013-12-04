@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/mauriciozaffari/mongoid_search.git
+  revision: 65b3a50bf518e50e0157eeb30912d337f6f540be
+  specs:
+    mongoid_search (0.3.2)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: f8b439dd9a59b769389aff81a42502cd857cf7fa
   specs:
@@ -75,6 +83,7 @@ GEM
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    fast-stemmer (1.0.2)
     hike (1.2.3)
     http_parser.rb (0.6.0.beta.2)
     i18n (0.6.5)
@@ -179,6 +188,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mongoid!
+  mongoid_search!
   rails (= 4.0.1)
   rails_12factor
   sass-rails (~> 4.0.0)
