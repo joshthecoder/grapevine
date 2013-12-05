@@ -18,6 +18,11 @@ class FeedsController < ApplicationController
     render json: @feed.top_tweets
   end
 
+  def status
+    @status = FeedStatus.instance
+    render "status", layout: "application"
+  end
+
   private
 
   def load_feed
