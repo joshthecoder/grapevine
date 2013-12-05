@@ -1,6 +1,7 @@
 class Tweet
   include Mongoid::Document
   include Mongoid::Search
+  include Mongoid::Timestamps::Created
   field :status_id, type: String
   field :text, type: String
   field :retweet_count, type: Integer
