@@ -1,13 +1,16 @@
 class FeedsController < ApplicationController
-  before_action :load_feed, only: [:tweets]
+  before_action :load_feed, only: [:update, :tweets]
 
   def index
   end
 
   def create
-    @feed = Feed.create(keywords: params.require(:query).split) do |f|
-      f.results = [{id: '123', text: 'works!'}]
-    end
+    @feed = Feed.create(keywords: keywords)
+    render json: @feed
+  end
+
+  def update
+    @feed.update_attribute(:keywords, keywords)
     render json: @feed
   end
 
@@ -19,5 +22,9 @@ class FeedsController < ApplicationController
 
   def load_feed
     @feed = Feed.find(params[:id])
+  end
+
+  def keywords
+    params.require(:query).split
   end
 end
