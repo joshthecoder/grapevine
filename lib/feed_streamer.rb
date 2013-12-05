@@ -7,9 +7,12 @@ class FeedStreamer
 
   def start
     if needs_restart?
+      puts "Starting..."
       @client.stop_stream
       @client.filter(track: @new_keywords)
       @current_keywords = @new_keywords
+    else
+      puts "Sleep."
     end
 
     EM::Timer.new(30) { start }
