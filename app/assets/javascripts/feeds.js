@@ -97,7 +97,7 @@ var FeedController = Marionette.Controller.extend({
 
   updateQuery: function(query) {
     this.feed.save({query: query}, {success: this.refresh});
-    this.searchView.clear();
+    //this.searchView.clear();
     this.showTweets();
   },
 
