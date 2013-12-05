@@ -58,8 +58,13 @@ var TweetItemView = Backbone.Marionette.ItemView.extend({
   }
 });
 
+var NoTweetsView = Backbone.Marionette.ItemView.extend({
+  template: "no_tweets"
+});
+
 var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
-  itemView: TweetItemView
+  itemView: TweetItemView,
+  emptyView: NoTweetsView
 });
 
 
