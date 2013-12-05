@@ -4,6 +4,11 @@
     <strong class="fullname">{{user_name}}</strong>
     <span class="screenname">@{{user_screeen_name}}</span>
   </a>
-  <span class="pull-right"><i class="glyphicon glyphicon-retweet"></i> {{retweet_count}}</span>
+  <span class="pull-right">
+    <a href="https://twitter.com/intent/retweet?tweet_id={{status_id}}"
+      target="_blank">
+      <i class="glyphicon glyphicon-retweet"></i> {{retweet_count}}
+    </a>
+  </span>
 </div>
 <p class="tweet-text">{{autolink text}}</p>
