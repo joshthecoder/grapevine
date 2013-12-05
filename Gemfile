@@ -49,3 +49,6 @@ gem 'thin'
 # Twitter Streaming API client.
 gem 'tweetstream'
 
+# Handlebars Templates
+gem 'handlebars_assets'
+

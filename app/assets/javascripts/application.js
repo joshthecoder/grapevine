@@ -14,14 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require handlebars.runtime
 //= require backbone
 //= require backbone.marionette
+//= require_tree ./templates
 //= require_tree .
 
 var App = new Marionette.Application();
 
-// Use mustache style templates to avoid conflicting with ERB templates.
-_.templateSettings = {
-  interpolate: /\{\{(.+?)\}\}/g
+Backbone.Marionette.Renderer.render = function(template, data){
+  return HandlebarsTemplates[template](data);
 };
 
