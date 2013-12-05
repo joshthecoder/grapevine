@@ -46,6 +46,14 @@ var FeedSearchView = Backbone.View.extend({
   }
 });
 
+var TweetItemView = Backbone.Marionette.ItemView.extend({
+  template: "tweet_item"
+});
+
+var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
+  itemView: TweetItemView
+});
+
 
 // --- Controller ---
 var FeedController = Marionette.Controller.extend({
@@ -56,22 +64,26 @@ var FeedController = Marionette.Controller.extend({
       el: $(".feed-search"),
       model: this.feed
     });
+    this.tweetsView = new TweetCollectionView({
+      el: $(".tweets"),
+      collection: this.tweets
+    });
     this.listenTo(this.searchView, "feed:search", this.updateQuery);
-
-    _.bindAll(this, "refresh");
-  },
-
-  startRefresh: function() {
-    _.delay(this.refresh, 1000 * 30);
   },
 
   refresh: function() {
+    var self = this;
+    _.delay(function() {
+      console.log("refreshing...");
+      self.tweets.fetch();
+      self.refresh();
+    }, 1000 * 30);
   },
 
   updateQuery: function(query) {
     this.feed.save({query: query});
     this.searchView.clear();
-    //this.startRefresh();
+    this.refresh();
   }
 });
 
