@@ -9,8 +9,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= content_for?(:body) ? yield(:body) : yield %>
-
+  <div class="container">
+    <div id="header">
+    </div>
+    <div id="main">
+    </div>
+  </div>
 </body>
 </html>

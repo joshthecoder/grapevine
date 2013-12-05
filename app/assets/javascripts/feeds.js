@@ -30,7 +30,9 @@ var FeedTweets = Backbone.Collection.extend({
 
 // --- Views ---
 
-var FeedSearchView = Backbone.View.extend({
+var FeedSearchView = Backbone.Marionette.ItemView.extend({
+  template: "search",
+
   events: {
     "submit": "_onSubmit"
   },
@@ -60,34 +62,42 @@ var FeedController = Marionette.Controller.extend({
   initialize: function() {
     this.feed = new Feed();
     this.tweets = new FeedTweets([], {feed: this.feed});
-    this.searchView = new FeedSearchView({
-      el: $(".feed-search"),
-      model: this.feed
-    });
-    this.tweetsView = new TweetCollectionView({
-      el: $(".tweets"),
-      collection: this.tweets
-    });
-    this.listenTo(this.searchView, "feed:search", this.updateQuery);
+    _.bindAll(this, "refresh");
   },
 
-  refresh: function() {
-    var self = this;
-    _.delay(function() {
-      console.log("refreshing...");
-      self.tweets.fetch();
-      self.refresh();
-    }, 1000 * 30);
+  start: function() {
+    this.showSearch();
+  },
+
+  showSearch: function() {
+    this.searchView = new FeedSearchView({
+      model: this.feed
+    });
+    this.listenTo(this.searchView, "feed:search", this.updateQuery);
+    App.header.show(this.searchView);
+  },
+
+  showTweets: function() {
+    this.tweetsView = new TweetCollectionView({
+      collection: this.tweets
+    });
+    App.main.show(this.tweetsView);
   },
 
   updateQuery: function(query) {
-    this.feed.save({query: query});
+    this.feed.save({query: query}, {success: this.refresh});
     this.searchView.clear();
-    this.refresh();
+    this.showTweets();
+  },
+
+  refresh: function() {
+    this.tweets.fetch();
+    _.delay(this.refresh, 1000 * 10);
   }
 });
 
-$(function() {
-  var ctrl = window.feedCtrl = new FeedController();
+App.addInitializer(function() {
+  var ctrl = new FeedController();
+  ctrl.start();
 });
 

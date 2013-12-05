@@ -17,12 +17,22 @@
 //= require handlebars.runtime
 //= require backbone
 //= require backbone.marionette
+//= require_self
 //= require_tree ./templates
 //= require_tree .
-
-var App = new Marionette.Application();
 
 Backbone.Marionette.Renderer.render = function(template, data){
   return HandlebarsTemplates[template](data);
 };
+
+App = new Marionette.Application();
+
+App.addRegions({
+  header: "#header",
+  main: "#main"
+});
+
+$(function() {
+  App.start();
+});
 
