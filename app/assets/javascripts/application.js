@@ -17,6 +17,7 @@
 //= require handlebars.runtime
 //= require backbone
 //= require backbone.marionette
+//= require twitter-text
 //= require_self
 //= require_tree ./templates
 //= require_tree .

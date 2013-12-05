@@ -49,7 +49,13 @@ var FeedSearchView = Backbone.Marionette.ItemView.extend({
 });
 
 var TweetItemView = Backbone.Marionette.ItemView.extend({
-  template: "tweet_item"
+  template: "tweet_item",
+
+  templateHelpers: {
+    autolink: function(text) {
+      return new Handlebars.SafeString(twttr.txt.autoLink(twttr.txt.htmlEscape(text)));
+    }
+  }
 });
 
 var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
@@ -91,7 +97,7 @@ var FeedController = Marionette.Controller.extend({
   },
 
   refresh: function() {
-    this.tweets.fetch();
+    this.tweets.fetch({reset: true});
     _.delay(this.refresh, 1000 * 10);
   }
 });
